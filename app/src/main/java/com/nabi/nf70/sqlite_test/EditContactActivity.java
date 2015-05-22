@@ -1,15 +1,16 @@
 package com.nabi.nf70.sqlite_test;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 
-public class EditContactActivity extends ActionBarActivity {
+public class EditContactActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,17 +26,20 @@ public class EditContactActivity extends ActionBarActivity {
         nameEditText.setText(name);
         phoneEditText.setText(phone);
         final Button btnSave =(Button)this.findViewById(R.id.btnSave);
-        btnSave.setOnClickListener((v) -> {
-            if(btnSave.getId() == R.id.btnSave)
-            {
-                Intent intent = getIntent();
-                Bundle bundle = new Bundle();
-                bundle.putInt("id", id);
-                bundle.putString("name", nameEditText.getText().toString());
-                bundle.putString("phone", phoneEditText.getText().toString());
-                intent.putExtra(bundle);
-                setResult(1, intent); //requestCode需跟A.class的一樣
-                EditContactActivity.this.finish();
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (btnSave.getId() == R.id.btnSave)
+                {
+                    Intent intent = getIntent();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("id", id);
+                    bundle.putString("name", nameEditText.getText().toString());
+                    bundle.putString("phone", phoneEditText.getText().toString());
+                    intent.putExtras(bundle);
+                    setResult(1, intent); //requestCode需跟A.class的一樣
+                    EditContactActivity.this.finish();
+                }
             }
         });
     }
