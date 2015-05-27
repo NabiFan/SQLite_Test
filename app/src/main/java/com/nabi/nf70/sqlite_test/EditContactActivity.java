@@ -30,7 +30,7 @@ public class EditContactActivity extends Activity {
             @Override
             public void onClick(View v) {
                 if (btnSave.getId() == R.id.btnSave)
-                {
+                {//
                     Intent intent = getIntent();
                     Bundle bundle = new Bundle();
                     bundle.putInt("id", id);
